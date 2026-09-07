@@ -1,0 +1,12 @@
+{
+    "PATH_TO_DOWNLOADS": "/Users/aditipriya/Downloads",
+    "NOTIFICATION_MESSAGES": [
+        "Started file organizing script.",
+        "No configuration found. Please check the config.json file's path/locations."
+    ],
+    ".mp4": "/Users/aditipriya/Videos",
+    ".pdf": "/Users/aditipriya/Documents/PDFs",
+    ".zip": "/Users/aditipriya/Archives",
+    ".jpg": "/Users/aditipriya/Pictures",
+    ".png": "/Users/aditipriya/Pictures"
+}
