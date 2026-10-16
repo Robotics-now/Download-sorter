@@ -13,7 +13,7 @@ def load_config(config_path):
         return json.load(f)
 
 def send_notification(message):
-    title = "File Organizer"
+    title = "Downloads Sorter"
     script = f'display notification "{message}" with title "{title}"'
     subprocess.run(["osascript", "-e", script])
     
@@ -23,14 +23,14 @@ send_notification(config.get("NOTIFICATION_MESSAGES")[0])
 def organize_files():
 
 
-    downloads_path = config.get("PATH_TO_DOWNLOADS")
+    downloads_path = Path(config.get("PATH_TO_DOWNLOADS")).expanduser()
     if not config:
         send_notification(config.get("NOTIFICATION_MESSAGES")[1])
         return "0"
 
     # Normalize extensions to lowercase with a leading dot
     mapping = {
-        ext.lower() if ext.startswith('.') else f".{ext.lower()}": Path(dest)
+        ext.lower() if ext.startswith('.') else f".{ext.lower()}": Path(dest).expanduser()
         for ext, dest in config.items()
         if ext not in {"PATH_TO_DOWNLOADS", "NOTIFICATION_MESSAGES"}
     }
