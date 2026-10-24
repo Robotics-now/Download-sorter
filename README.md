@@ -124,6 +124,9 @@ The script expects a plain JSON object with extension keys and macOS directory p
 - **Python:** Python 3.10 or higher required
 - **Dependencies:** None (uses built-in standard library)
 
+> [!IMPORTANT]
+> Make sure you have notifications enabled for the terminal so you can see notifications from Downloads sorter
+
 ## 📋 Quick Reference
 
 | Parameter | Default |
