@@ -142,7 +142,7 @@ The first number is the major version, the second number is the feature update, 
 
 ## License
 
-> **GPL 3.0 License**
+> [**GPL 3.0 License**](https://github.com/Robotics-now/Download-sorter?tab=GPL-3.0-1-ov-file#GPL-3.0-1-ov-file)
 >
 > Copyright © 2026 Robotics-now
 >
