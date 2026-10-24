@@ -30,9 +30,11 @@ def organize_files():
 
     # Normalize extensions to lowercase with a leading dot
     mapping = {
-        ext.lower() if ext.startswith('.') else f".{ext.lower()}": Path(dest).expanduser()
+        ext.lower() if ext.startswith('.') else f".{ext.lower()}": Path(dest.strip()).expanduser()
         for ext, dest in config.items()
         if ext not in {"PATH_TO_DOWNLOADS", "NOTIFICATION_MESSAGES"}
+        and isinstance(dest, str)
+        and dest.strip() not in {"", "~", "/", "~/"}
     }
 
     for item in Path(downloads_path).iterdir():
@@ -45,7 +47,10 @@ def organize_files():
             target_dir = mapping[ext]
             
             # Create target folder if it doesn't exist
+            folder_created = not target_dir.exists()
             target_dir.mkdir(parents=True, exist_ok=True)
+            if folder_created:
+                send_notification(f"Created folder {config.get('ARROW_TYPE')} {target_dir}")
             
             target_path = target_dir / item.name
 
@@ -58,7 +63,7 @@ def organize_files():
                     counter += 1
 
             shutil.move(str(item), str(target_path))
-            send_notification(f"Moved: {item.name} -> {target_path}")
+            send_notification(f"Moved {config.get('ARROW_TYPE')} {item.name} {config.get('ARROW_TYPE')} {target_path}")
 
 if __name__ == "__main__":
     while True:
